@@ -2,6 +2,9 @@
     <img src="https://img.shields.io/github/license/SleeplessOne1917/pretty-num?style=for-the-badge" alt="License"/>
     <img src="https://img.shields.io/github/last-commit/SleeplessOne1917/pretty-num?style=for-the-badge&logo=github" alt="Last commit"/>
     <img src="https://img.shields.io/github/stars/SleeplessOne1917/pretty-num?style=for-the-badge&logo=github" alt="GitHub stars"/>
+    <img src="https://img.shields.io/crates/v/pretty-num?style=for-the-badge" alt="Latest version" />
+    <img src="https://img.shields.io/crates/dv/pretty-num?style=for-the-badge" alt="Latest version downloads" />
+    <img src="https://img.shields.io/crates/size/pretty-num?style=for-the-badge&logo=rust&label=Code%20Size" alt="Code size" />
 </div>
 
 # prettty-num
