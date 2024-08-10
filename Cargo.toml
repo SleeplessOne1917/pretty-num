@@ -2,6 +2,12 @@
 name = "pretty-num"
 version = "0.1.0"
 edition = "2021"
+license = "GPL-3.0-or-later"
+authors = ["SleeplessOne1917"]
+repository = "https://github.com/SleeplessOne1917/pretty-num"
+description = "A lightweight library for compactly formatting integers."
+keywords = ["format", "number", "pretty", "compact", "lightweight"]
+categories = ["value-formatting"]
 
 [dev-dependencies]
 rstest = "0.22.0"
