@@ -1,6 +1,39 @@
+#![warn(missing_docs)]
+//! This crate formats numbers in a compact form similar to that used on social media sites:
+//! ```
+//! use pretty_num::PrettyNumber;
+//! 
+//! assert_eq!(23_520_123.pretty_format(), String::from("23.5M"));
+//! ```
+
 const SUFFIXES: [char; 4] = ['k', 'M', 'B', 'T'];
 
+/// A number that can be formatted prettily.
 pub trait PrettyNumber {
+    /// Formats an integer to be more compact. The resulting string will have a maximum of 3 significant digits with no more than one decimal point.
+    /// # Examples
+    /// ```
+    /// # use pretty_num::PrettyNumber;
+    /// // Integers with a magnitude less than 1,000 do not get compacted.
+    /// assert_eq!(534.pretty_format(), String::from("534"));
+    /// 
+    /// // Integers with a magnitude greater than or equal to 1,000 get compacted.
+    /// assert_eq!(15_000.pretty_format(), String::from("15k"));
+    /// 
+    /// // Integers will have a single decimal point when rounded.
+    /// assert_eq!(4_230_542.pretty_format(), String::from("4.2M"));
+    /// 
+    /// // Formatted numbers get rounded to a number without a decimal place when appropriate.
+    /// assert_eq!(5_031.pretty_format(), String::from("5k"));
+    /// 
+    /// // Also works with negative numbers.
+    /// assert_eq!((-25_621_783).pretty_format(), String::from("-25.6M"));
+    /// 
+    /// // Can go as high as trillions!
+    /// assert_eq!(36_777_121_590_100i64.pretty_format(), String::from("36.8T"));
+    /// ```
+    /// # Panics
+    /// This function panics if it is passed a number greater than 1 quadrillion or less than negative 1 quadrillion.
     fn pretty_format(self) -> String;
 }
 
