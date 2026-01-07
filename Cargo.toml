@@ -10,4 +10,4 @@ keywords = ["format", "number", "pretty", "compact", "lightweight"]
 categories = ["value-formatting"]
 
 [dev-dependencies]
-rstest = "0.22.0"
+rstest = "0.26.1"
