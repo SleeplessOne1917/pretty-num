@@ -2,7 +2,7 @@
 //! This crate formats numbers in a compact form similar to that used on social media sites:
 //! ```
 //! use pretty_num::PrettyNumber;
-//! 
+//!
 //! assert_eq!(23_520_123.pretty_format(), String::from("23.5M"));
 //! ```
 
@@ -16,19 +16,19 @@ pub trait PrettyNumber {
     /// # use pretty_num::PrettyNumber;
     /// // Integers with a magnitude less than 1,000 do not get compacted.
     /// assert_eq!(534.pretty_format(), String::from("534"));
-    /// 
+    ///
     /// // Integers with a magnitude greater than or equal to 1,000 get compacted.
     /// assert_eq!(15_000.pretty_format(), String::from("15k"));
-    /// 
+    ///
     /// // Integers will have a single decimal point when rounded.
     /// assert_eq!(4_230_542.pretty_format(), String::from("4.2M"));
-    /// 
+    ///
     /// // Formatted numbers get rounded to a number without a decimal place when appropriate.
     /// assert_eq!(5_031.pretty_format(), String::from("5k"));
-    /// 
+    ///
     /// // Also works with negative numbers.
     /// assert_eq!((-25_621_783).pretty_format(), String::from("-25.6M"));
-    /// 
+    ///
     /// // Can go as high as trillions!
     /// assert_eq!(36_777_121_590_100i64.pretty_format(), String::from("36.8T"));
     /// ```
@@ -50,9 +50,12 @@ impl<N: Into<i64>> PrettyNumber for N {
                 number_as_float /= 1000f32;
 
                 if number_as_float < 1000f32 {
+                    println!("{}", number_as_float - number_as_float.floor());
+                    println!("{}", number_as_float.ceil() - number_as_float);
                     return format!(
                         "{:.*}{suffix}",
                         if (number_as_float - number_as_float.floor()) < 0.1
+                            || (number_as_float.ceil() - number_as_float) < 0.05
                             || number_as_float >= 100f32
                         {
                             0
@@ -85,6 +88,7 @@ mod test {
     #[case(1_624, "1.6k")]
     #[case(-5_020, "-5k")]
     #[case(-9_505, "-9.5k")]
+    #[case(19_995, "20k")]
     #[case(19_007, "19k")]
     #[case(73_444, "73.4k")]
     #[case(-55_033, "-55k")]
@@ -99,7 +103,9 @@ mod test {
     #[case(-3_333_221, "-3.3M")]
     #[case(75_032_115, "75M")]
     #[case(23_333_452, "23.3M")]
+    #[case(79_998_001, "80M")]
     #[case(-54_012_560, "-54M")]
+    #[case(-23_981_670, "-24M")]
     #[case(-11_740_662, "-11.7M")]
     #[case(555_067_885, "555M")]
     #[case(352_344_120, "352M")]
