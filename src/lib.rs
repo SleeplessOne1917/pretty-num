@@ -50,8 +50,6 @@ impl<N: Into<i64>> PrettyNumber for N {
                 number_as_float /= 1000f32;
 
                 if number_as_float < 1000f32 {
-                    println!("{}", number_as_float - number_as_float.floor());
-                    println!("{}", number_as_float.ceil() - number_as_float);
                     return format!(
                         "{:.*}{suffix}",
                         if (number_as_float - number_as_float.floor()) < 0.1
