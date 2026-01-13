@@ -52,7 +52,7 @@ impl<N: Into<i64>> PrettyNumber for N {
                 if number_as_float < 1000f32 {
                     return format!(
                         "{:.*}{suffix}",
-                        if (number_as_float - number_as_float.floor()) < 0.1
+                        if (number_as_float - number_as_float.floor()) < 0.05
                             || (number_as_float.ceil() - number_as_float) < 0.05
                             || number_as_float >= 100f32
                         {
@@ -113,7 +113,8 @@ mod test {
     #[case(7_667_973_223, "7.7B")]
     #[case(-4_002_154_900, "-4B")]
     #[case(-6_534_664_725, "-6.5B")]
-    #[case(87_050_671_768, "87B")]
+    #[case(87_050_671_768, "87.1B")]
+    #[case(79_059_001, "79.1M")]
     #[case(44_444_333_222, "44.4B")]
     #[case(-32_010_345_093, "-32B")]
     #[case(-65_420_132_543, "-65.4B")]
